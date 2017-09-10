@@ -11,7 +11,8 @@ RUN apt-get update \
      tcpdump \
      strongswan \
      curl \
-     kmod
+     kmod \
+     less
 RUN mkdir /var/run/sshd
 RUN echo 'root:alta3' | chpasswd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
