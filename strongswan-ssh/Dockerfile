@@ -22,7 +22,7 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
 
-EXPOSE 22 500/udp 4500/udp
+EXPOSE 22 500/udp 4500/udp 1812 1813 1645 1646
 CMD ["/usr/sbin/sshd", "-D"]
 
 
