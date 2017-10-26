@@ -11,9 +11,20 @@ RUN apt-get update \
      tcpdump \
      curl \
      python \
-     less
+     less \ 
+     sudo
 RUN mkdir /var/run/sshd
 RUN echo 'root:alta3' | chpasswd
+
+RUN useradd --create-home --shell /bin/bash student
+RUN install -d -o student -g student /home/student/.ssh
+RUN echo 'student:alta3' | chpasswd
+
+RUN useradd --create-home --shell /bin/bash ubuntu
+RUN install -d -o ubuntu -g ubuntu /home/ubuntu/.ssh
+RUN echo 'ubuntu:alta3' | chpasswd
+RUN adduser ubuntu sudo
+
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
