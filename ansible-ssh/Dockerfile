@@ -16,6 +16,7 @@ RUN apt-get update \
 RUN mkdir /var/run/sshd
 RUN echo 'root:alta3' | chpasswd
 
+RUN pip install --upgrade pip
 RUN pip install -U pyopenssl
 RUN useradd --create-home --shell /bin/bash student
 RUN install -d -o student -g student /home/student/.ssh
