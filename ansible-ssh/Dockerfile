@@ -12,6 +12,7 @@ RUN apt-get update \
      curl \
      python \
      less \ 
+     python-pip \
      sudo
 RUN mkdir /var/run/sshd
 RUN echo 'root:alta3' | chpasswd
