@@ -25,6 +25,8 @@ RUN useradd --create-home --shell /bin/bash student
 RUN install -d -o student -g student /home/student/.ssh
 RUN echo 'student:alta3' | chpasswd
 
+# lines 15, 20-23 added to try and fix 'module' object has no attribute 'SSL_ST_INIT' problem
+
 RUN useradd --create-home --shell /bin/bash ubuntu
 RUN install -d -o ubuntu -g ubuntu /home/ubuntu/.ssh
 RUN echo 'ubuntu:alta3' | chpasswd
