@@ -17,6 +17,8 @@ RUN apt-get update \
 RUN mkdir /var/run/sshd
 RUN echo 'root:alta3' | chpasswd
 
+RUN rm -rf /usr/lib/python2.7/dist-packages/OpenSSL
+RUN rm -rf /usr/lib/python2.7/dist-packages/pyOpenSSL-0.15.1.egg-info
 RUN pip install --upgrade pip
 RUN pip install -U pyopenssl
 RUN useradd --create-home --shell /bin/bash student
