@@ -21,7 +21,7 @@ RUN useradd --create-home --shell /bin/bash ${user}                             
     curl -s https://api.github.com/users/${gh_user}/keys | jq -r '.[] | .key' > /home/${user}/.ssh/authorized_keys
 
 # allow root ssh with password and set password
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config                    && \
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config                    && \
     echo "root:${pass}" | chpasswd
 
 EXPOSE 22
