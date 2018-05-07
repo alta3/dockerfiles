@@ -24,7 +24,7 @@ RUN useradd --create-home --shell /bin/bash ${user}                             
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' 
 
 # allow root ssh with password and set password
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config                    && \
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config                    && \
     echo "root:${pass}" | chpasswd
 
 EXPOSE 22
