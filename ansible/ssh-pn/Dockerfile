@@ -8,7 +8,7 @@ ARG pass=alta3
 ARG gh_user=alta3-student1
 
 RUN apt-get update                                                                                            && \
-    apt-get install -y jq curl sudo vim openssh-server man less python git                                    && \ 
+    apt-get install -y jq curl sudo vim openssh-server man less python git iproute2                           && \ 
     mkdir /var/run/sshd                                                                                       && \
     echo "AllowAgentForwarding yes" >> /etc/ssh/sshd_config                                                   
 
