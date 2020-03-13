@@ -21,6 +21,7 @@ RUN useradd --create-home --shell /bin/bash ${user}                             
     echo "${user}	ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers                                              && \
     curl -s https://api.github.com/users/${gh_user}/keys | jq -r '.[] | .key' > /home/${user}/.ssh/authorized_keys
 
+RUN rm /var/run/nologin
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' 
 
 # allow root ssh with password and set password
