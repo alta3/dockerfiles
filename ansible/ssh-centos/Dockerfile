@@ -9,7 +9,7 @@ ARG gh_user=alta3-student1
 
 RUN yum -y update                                                                                             && \
     yum install -y epel-release                                                                               && \
-    yum install -y jq curl sudo vim openssh-server man less python git                                        && \ 
+    yum install -y jq curl sudo vim openssh-server man less python36 git                                        && \ 
     mkdir /var/run/sshd                                                                                       && \
     echo "AllowAgentForwarding yes" >> /etc/ssh/sshd_config                                                   
 
