@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
 
 # build with:  sudo docker build --tag ssh-kp .
 # run with:    sudo docker run -d ssh-kp
@@ -7,15 +7,15 @@ ARG user=student
 ARG pass=alta3
 ARG gh_user=alta3-student1
 
-RUN apt-get update                                                                                            && \ 
-    apt-get install -y jq curl sudo vim openssh-server man less python git iproute2                           && \ 
+RUN apt-get update                                                                                            && \
+    apt-get install -y jq curl sudo vim openssh-server man less python git iproute2                           && \
     mkdir /var/run/sshd                                                                                       && \
-    echo "AllowAgentForwarding yes" >> /etc/ssh/sshd_config                                                   
+    echo "AllowAgentForwarding yes" >> /etc/ssh/sshd_config
 
 # create user, set password, make pasword required sudoer
-RUN useradd --create-home --shell /bin/bash ${user}                                                           && \ 
-    install --directory --owner=${user} --group=${user} /home/${user}/.ssh                                    && \ 
-    echo "${user}:${pass}" | chpasswd                                                                         && \ 
+RUN useradd --create-home --shell /bin/bash ${user}                                                           && \
+    install --directory --owner=${user} --group=${user} /home/${user}/.ssh                                    && \
+    echo "${user}:${pass}" | chpasswd                                                                         && \
     echo "export LC_ALL=C" >> /home/${user}/.bashrc                                                           && \
     echo "${user}	ALL=(ALL:ALL) ALL" >> /etc/sudoers                                                    && \
     curl -s https://api.github.com/users/${gh_user}/keys | jq -r '.[] | .key' > /home/${user}/.ssh/authorized_keys
@@ -26,4 +26,3 @@ RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
-
